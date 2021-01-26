@@ -21,7 +21,8 @@
           <i class="fas fa-angle-right"></i>
         </div>
         <div class="nav">
-          <i class="fas fa-circle last"></i>
+          <i class="fas fa-circle" v-for="(circles,index) in images" :class="(index == counter) ? 'active' : ''" @click="changeImg"></i>
+          <!-- col v-for gli diciamo stampa tanti circle quanto la lunghezza di images -->
         </div>
       </div>
     </div>

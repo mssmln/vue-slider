@@ -40,9 +40,14 @@ var app = new Vue({
       console.log(this.counter);
     },
     prevImg(){
-      // metodo 1 ternario
+      // metodo 1 ternario, mia preferita
       (this.counter == 0) ? this.counter = this.images.length - 1 : this.counter--;
       console.log(this.counter);
-    }
+
+      // metodo 2 ternario
+      // (this.counter < 1) ? this.counter = this.images.length - 1 : this.counter--;
+      // console.log(this.counter);
+    },
+    changeImg(){}
   }
 });
