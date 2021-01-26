@@ -21,7 +21,7 @@
     text-align: center;
 }
 .slider-wrapper .images img {
-    display: none;
+    /* display: none; */
     height: 100%;
 }
 .slider-wrapper .images img.active {

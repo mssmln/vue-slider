@@ -11,13 +11,13 @@
   <body>
     <div id="app" class="container">
       <div class="slider-wrapper">
-        <div class="prev">
+        <div @click="prevImg" class="prev">
           <i class="fas fa-angle-left"></i>
         </div>
         <div class="images">
-          <img :src="images[0]" alt="">
+          <img :src="images[counter]" alt="">
         </div>
-        <div class="next">
+        <div @click="nextImg" class="next">
           <i class="fas fa-angle-right"></i>
         </div>
         <div class="nav">
