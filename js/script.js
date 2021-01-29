@@ -17,24 +17,21 @@ var app = new Vue({
     this.interval = setInterval(this.nextImg,2000);
 
     // variante keyDown 1
-    self.addEventListener('keydown',function(e) {
-      // restituisce il codice numerico del tasto
-      console.log('e.keyCode log result',e.keyCode);
-      // restituisce il codice stringa del tasto
-      console.log('e.key log result',e.key);
-      app.keyCode = e.keyCode;
-      app.keyDown();
-    });
-
-    // variante keyDown 2 con argomento
-    // self.addEventListener('keydown',function(e) {
+    // self.addEventListener('keydown',function(e) { // ascolta un evento di keydown e poi parte la fun
     //   // restituisce il codice numerico del tasto
     //   console.log('e.keyCode log result',e.keyCode);
     //   // restituisce il codice stringa del tasto
     //   console.log('e.key log result',e.key);
-    //   app.keyCode = e.keyCode;
+    //   app.keyCode = e.keyCode; // dobbiamo salvarci il keyCode per usarlo nella fun senza argomento
     //   app.keyDown();
     // });
+
+    // variante keyDown 2 con argomento - mia preferita
+    self.addEventListener('keydown',function(e) {
+      console.log(e); // oggetto con key e keyCode
+      app.keyDown(e);
+    });
+
   },
   // created e mounted sono metodi Vue che partono in automatico, non serve intervenire sul html ne inserirli in methods
 
@@ -88,9 +85,10 @@ var app = new Vue({
       // quando clicchiamo su uno dei circle stoppiamo il setInterval
       clearInterval(this.interval);
     },
+
     // variante keyDown 1 senza argomento
     // keyDown(){
-    //   if (this.keyCode === 37) {
+    //   if (this.keyCode === 37) { // in this.keyCode è memorizzato e.keyCode da setInterval
     //     this.prevImg();
     //     clearInterval(this.interval);
     //   } else if (this.keyCode === 39) {
@@ -100,7 +98,7 @@ var app = new Vue({
     // },
 
     // variante keyDown 2 con argomento
-    keyDown(e){ // e stands for event
+    keyDown(e){ // e è l'intero oggetto che contiene sia key che keyCode, pertanto nella condizione puoi usare uno dei due, se scegli keyCode metti il numero, se scegli key metti la stringa di riferimento
       if (e.key == 'ArrowLeft') {
         this.prevImg();
         clearInterval(this.interval);
