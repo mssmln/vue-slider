@@ -15,6 +15,26 @@ var app = new Vue({
   // metodo mounted che parte dopo che l'istanza Vue è montata
   mounted(){ // in questo caso non vedo differenze con created
     this.interval = setInterval(this.nextImg,2000);
+
+    // variante keyDown 1
+    self.addEventListener('keydown',function(e) {
+      // restituisce il codice numerico del tasto
+      console.log('e.keyCode log result',e.keyCode);
+      // restituisce il codice stringa del tasto
+      console.log('e.key log result',e.key);
+      app.keyCode = e.keyCode;
+      app.keyDown();
+    });
+
+    // variante keyDown 2 con argomento
+    // self.addEventListener('keydown',function(e) {
+    //   // restituisce il codice numerico del tasto
+    //   console.log('e.keyCode log result',e.keyCode);
+    //   // restituisce il codice stringa del tasto
+    //   console.log('e.key log result',e.key);
+    //   app.keyCode = e.keyCode;
+    //   app.keyDown();
+    // });
   },
   // created e mounted sono metodi Vue che partono in automatico, non serve intervenire sul html ne inserirli in methods
 
@@ -67,6 +87,27 @@ var app = new Vue({
 
       // quando clicchiamo su uno dei circle stoppiamo il setInterval
       clearInterval(this.interval);
-    }
+    },
+    // variante keyDown 1 senza argomento
+    // keyDown(){
+    //   if (this.keyCode === 37) {
+    //     this.prevImg();
+    //     clearInterval(this.interval);
+    //   } else if (this.keyCode === 39) {
+    //     this.nextImg();
+    //     clearInterval(this.interval);
+    //   }
+    // },
+
+    // variante keyDown 2 con argomento
+    keyDown(e){ // e stands for event
+      if (e.key == 'ArrowLeft') {
+        this.prevImg();
+        clearInterval(this.interval);
+      } else if (e.key == 'ArrowRight') {
+        this.nextImg();
+        clearInterval(this.interval);
+      }
+    },
   }
 });
